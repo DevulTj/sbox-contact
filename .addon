@@ -1,0 +1,27 @@
+{
+  "Title": "Contact",
+  "Type": "game",
+  "Org": "devultj",
+  "Ident": "contact",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": [
+    "/ui/*"
+  ],
+  "HasCode": true,
+  "CodePath": "/code/",
+  "RootNamespace": "Contact",
+  "Metadata": {
+    "MapList": [
+      "facepunch.construct"
+    ],
+    "PerMapRanking": false,
+    "LeaderboardType": 0,
+    "RankType": 0,
+    "MapSelect": 0,
+    "GameNetworkType": 0,
+    "MaxPlayers": 32,
+    "MinPlayers": 1
+  }
+}

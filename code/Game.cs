@@ -15,6 +15,8 @@ public partial class Game : Sandbox.Game
 
 	protected void SetupDefaultPawn( Client client )
 	{
+		client.Pawn?.Delete();
+
 		// Create a pawn for this client to play with
 		var pawn = new Player();
 		client.Pawn = pawn;

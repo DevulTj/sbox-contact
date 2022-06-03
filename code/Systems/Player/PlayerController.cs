@@ -3,7 +3,7 @@ namespace Contact;
 [Library]
 public partial class PlayerController : BasePlayerController
 {
-	[Net] public float SprintSpeed { get; set; } = 300.0f;
+	[Net] public float SprintSpeed { get; set; } = 280.0f;
 	[Net] public float WalkSpeed { get; set; } = 150.0f;
 	[Net] public float DefaultSpeed { get; set; } = 190.0f;
 	[Net] public float Acceleration { get; set; } = 10.0f;

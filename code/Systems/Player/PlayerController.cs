@@ -3,22 +3,21 @@ namespace Contact;
 [Library]
 public partial class PlayerController : BasePlayerController
 {
-	[Net] public float SprintSpeed { get; set; } = 280.0f;
 	[Net] public float WalkSpeed { get; set; } = 150.0f;
-	[Net] public float DefaultSpeed { get; set; } = 190.0f;
-	[Net] public float Acceleration { get; set; } = 10.0f;
+	[Net] public float DefaultSpeed { get; set; } = 270.0f;
+	[Net] public float Acceleration { get; set; } = 7.0f;
 	[Net] public float AirAcceleration { get; set; } = 50.0f;
 	[Net] public float FallSoundZ { get; set; } = -30.0f;
 	[Net] public float GroundFriction { get; set; } = 10.0f;
 	[Net] public float StopSpeed { get; set; } = 100.0f;
 	[Net] public float GroundAngle { get; set; } = 46.0f;
 	[Net] public float StepSize { get; set; } = 18.0f;
-	[Net] public float MaxNonJumpVelocity { get; set; } = 140.0f;
+	[Net] public float MaxNonJumpVelocity { get; set; } = 400f;
 	[Net] public float BodyGirth { get; set; } = 32.0f;
 	[Net] public float BodyHeight { get; set; } = 72.0f;
 	[Net] public float EyeHeight { get; set; } = 64.0f;
 	[Net] public float Gravity { get; set; } = 800.0f;
-	[Net] public float AirControl { get; set; } = 30.0f;
+	[Net] public float AirControl { get; set; } = 50.0f;
 	public bool Swimming { get; set; } = false;
 	[Net] public bool AutoJump { get; set; } = false;
 
@@ -249,8 +248,7 @@ public partial class PlayerController : BasePlayerController
 		var ws = Duck.GetWishSpeed();
 		if ( ws >= 0 ) return ws;
 
-		if ( Input.Down( InputButton.Run ) ) return SprintSpeed;
-		if ( Input.Down( InputButton.Walk ) ) return WalkSpeed;
+		if ( Input.Down( InputButton.Run ) ) return WalkSpeed;
 
 		return DefaultSpeed;
 	}

@@ -5,8 +5,8 @@
 		WeaponName = "Rifle"
 		WeaponShortName = "Rifle"
 		Slot = 0
-		Model = resource:"weapons/rust_smg/rust_smg.vmdl"
-		ViewModel = resource:"weapons/rust_smg/v_rust_smg.vmdl"
+		Model = "weapons/rust_smg/rust_smg.vmdl"
+		ViewModel = "weapons/rust_smg/v_rust_smg.vmdl"
 		Icon = null
 	}
 }

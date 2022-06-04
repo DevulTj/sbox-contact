@@ -55,7 +55,8 @@ public partial class WeaponDefinition : GameResource
 		if ( !All.Contains( this ) )
 			All.Add( this );
 
-		Index.Add( Name, this );
+		if ( !Index.ContainsKey( Name ) )
+			Index.Add( Name, this );
 
 		if ( !string.IsNullOrEmpty( Model ) )
 			CachedModel = Sandbox.Model.Load( Model );

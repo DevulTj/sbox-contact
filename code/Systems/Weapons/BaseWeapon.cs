@@ -1,12 +1,46 @@
 namespace Contact;
 
 [Title( "Weapon" ), Icon( "luggage" )]
-public class BaseWeapon : AnimatedEntity
+public partial class BaseWeapon : AnimatedEntity
 {
 	public virtual WeaponSlot Slot => WeaponSlot.Primary;
 	public virtual string ViewModelPath => null;
 
 	public BaseViewModel ViewModelEntity { get; protected set; }
+
+	[Net, Change( nameof( OnWeaponDefinitionChanged ) )]
+	protected WeaponDefinition _WeaponDefinition { get; set; }
+	public WeaponDefinition WeaponDefinition
+	{
+		get
+		{
+			return _WeaponDefinition;
+		}
+		set
+		{
+			_WeaponDefinition = value;
+			InitializeWeapon( _WeaponDefinition );
+		}
+	}
+
+	protected void OnWeaponDefinitionChanged( WeaponDefinition oldDef, WeaponDefinition newDef )
+	{
+		InitializeWeapon( newDef );
+	}
+
+	protected void InitializeWeapon( WeaponDefinition def )
+	{
+		Log.Info( $"set up this weapon {def}" );
+
+		if ( Host.IsClient )
+		{
+			CreateViewModel();
+			Log.Info( def.CachedViewModel );
+			ViewModelEntity.Model = def.CachedViewModel;
+		}
+
+		Model = def.CachedModel;
+	}
 
 	public override void Spawn()
 	{
@@ -127,14 +161,12 @@ public class BaseWeapon : AnimatedEntity
 	{
 		Host.AssertClient();
 
-		if ( string.IsNullOrEmpty( ViewModelPath ) )
-			return;
+		if ( !ViewModelEntity.IsValid() )
+			ViewModelEntity = new();
 
-		ViewModelEntity = new BaseViewModel();
 		ViewModelEntity.Position = Position;
 		ViewModelEntity.Owner = Owner;
 		ViewModelEntity.EnableViewmodelRendering = true;
-		ViewModelEntity.SetModel( ViewModelPath );
 	}
 
 	/// <summary>

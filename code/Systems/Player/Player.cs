@@ -135,6 +135,35 @@ public partial class Player : AnimatedEntity
 
 		Game.Current?.MoveToSpawnpoint( this );
 		ResetInterpolation();
+
+		Inventory = new PlayerInventory( this );
+		Inventory.Add( WeaponDefinition.CreateWeapon( "rifle" ), true );
+
+		MoveToSpawnPoint();
+
+		Log.Info( "weapon list!" );
+
+		foreach ( var wpn in WeaponDefinition.All )
+		{
+			Log.Info( wpn );
+		}
+	}
+
+	protected virtual void MoveToSpawnPoint()
+	{
+		// Get all of the spawnpoints
+		var spawnpoints = Entity.All.OfType<SpawnPoint>();
+
+		// chose a random one
+		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
+
+		// if it exists, place the pawn there
+		if ( randomSpawnPoint != null )
+		{
+			var tx = randomSpawnPoint.Transform;
+			tx.Position = tx.Position + Vector3.Up * 50.0f;
+			Transform = tx;
+		}
 	}
 
 	/// <summary>

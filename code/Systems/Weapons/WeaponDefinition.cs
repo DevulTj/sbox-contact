@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Contact;
 
-[GameResource( "Weapon Definition", "cwpn", "" ), Icon( "bolt" )]
+[GameResource( "Weapon Definition", "cwpn", "" )]
 public partial class WeaponDefinition : GameResource
 {
 	public static BaseWeapon CreateWeapon( WeaponDefinition def )
@@ -48,13 +48,12 @@ public partial class WeaponDefinition : GameResource
 
 	protected override void PostLoad()
 	{
+		base.PostLoad();
+
 		Log.Info( $"Contact: Registering weapon definition ({Name}, {WeaponName})" );
 
 		if ( !All.Contains( this ) )
 			All.Add( this );
-
-		foreach ( var wpn in All )
-			Log.Info( wpn );
 
 		Index.Add( Name, this );
 
@@ -63,7 +62,5 @@ public partial class WeaponDefinition : GameResource
 
 		if ( !string.IsNullOrEmpty( ViewModel ) )
 			CachedViewModel = Sandbox.Model.Load( ViewModel );
-
-		base.PostLoad();
 	}
 }

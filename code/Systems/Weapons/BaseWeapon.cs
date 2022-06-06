@@ -6,7 +6,7 @@ public partial class BaseWeapon : AnimatedEntity
 	public virtual WeaponSlot Slot => WeaponSlot.Primary;
 	public virtual string ViewModelPath => null;
 
-	public BaseViewModel ViewModelEntity { get; protected set; }
+	public ViewModel ViewModelEntity { get; protected set; }
 
 	[Net, Change( nameof( OnWeaponDefinitionChanged ) )]
 	protected WeaponDefinition _WeaponDefinition { get; set; }
@@ -35,7 +35,7 @@ public partial class BaseWeapon : AnimatedEntity
 		if ( Host.IsClient )
 		{
 			CreateViewModel();
-			Log.Info( def.CachedViewModel );
+
 			ViewModelEntity.Model = def.CachedViewModel;
 		}
 
@@ -162,7 +162,10 @@ public partial class BaseWeapon : AnimatedEntity
 		Host.AssertClient();
 
 		if ( !ViewModelEntity.IsValid() )
-			ViewModelEntity = new();
+		{
+			ViewModelEntity = new ViewModel();
+			ViewModelEntity.Weapon = this;
+		}
 
 		ViewModelEntity.Position = Position;
 		ViewModelEntity.Owner = Owner;

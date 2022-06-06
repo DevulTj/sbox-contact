@@ -8,5 +8,12 @@
 		Model = "weapons/rust_smg/rust_smg.vmdl"
 		ViewModel = "weapons/rust_smg/v_rust_smg.vmdl"
 		Icon = null
+		ViewModelSetup = 
+		{
+			PositionOffset = "-4,0,0"
+			RotationOffset = "0,0,0"
+			SwayWeight = 10
+			MouseSwayScale = "0.15,0.15"
+		}
 	}
 }

@@ -46,6 +46,9 @@ public partial class WeaponDefinition : GameResource
 	[Category( "Setup" ), ResourceType( "jpg" )]
 	public string Icon { get; set; }
 
+	[Category( "View Model" )]
+	public ViewModelSetup ViewModelSetup { get; set; }
+
 	protected override void PostLoad()
 	{
 		base.PostLoad();

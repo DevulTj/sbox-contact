@@ -3,10 +3,10 @@
 	data = 
 	{
 		WeaponName = "Rifle"
-		WeaponShortName = "Rifle"
+		WeaponShortName = "RFL"
 		Slot = 0
-		Model = "weapons/rust_smg/rust_smg.vmdl"
-		ViewModel = "weapons/rust_smg/v_rust_smg.vmdl"
+		Model = resource:"weapons/rust_smg/rust_smg.vmdl"
+		ViewModel = resource:"weapons/rust_smg/v_rust_smg.vmdl"
 		Icon = null
 		ViewModelSetup = 
 		{
